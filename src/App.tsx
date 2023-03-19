@@ -3,6 +3,7 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import { useQuery } from "@apollo/client/react";
 import { gql } from "@apollo/client";
+import DisplayMovie, { IFilm } from "./components/DisplayMovie/DisplayMovie";
 
 function App() {
   const { loading, error, data } = useQuery(gql`
@@ -33,8 +34,8 @@ function App() {
         <div>
           <h1>Star Wars Films</h1>
           <ul>
-            {data.allFilms.films.map((film: any) => (
-              <li key={film.title}>{film.title}</li>
+            {data.allFilms.films.map((film: IFilm) => (
+              <DisplayMovie key={film.title} film={film} className="wide" />
             ))}
           </ul>
         </div>
